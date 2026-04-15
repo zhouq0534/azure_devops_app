@@ -22,15 +22,12 @@ class AdsServiceImpl with AppLogger implements AdsService {
 
   static const _tag = 'AdsService';
 
-  bool _showAds = false;
-
   @override
   bool get hasAmazonAds => false;
 
   @override
   Future<void> init() async {
     setTag(_tag);
-    _showAds = false;
     logDebug('Ads disabled');
   }
 
@@ -40,14 +37,10 @@ class AdsServiceImpl with AppLogger implements AdsService {
   }
 
   @override
-  void removeAds() {
-    _showAds = false;
-  }
+  void removeAds() {}
 
   @override
-  void reactivateAds() {
-    _showAds = false;
-  }
+  void reactivateAds() {}
 
   @override
   Future<List<AdWithView>> getNewNativeAds() async => [];

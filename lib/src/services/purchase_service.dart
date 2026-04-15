@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:azure_devops/src/mixins/logger_mixin.dart';
 import 'package:azure_devops/src/services/ads_service.dart';
 import 'package:flutter/material.dart';
