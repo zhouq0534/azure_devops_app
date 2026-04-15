@@ -51,14 +51,11 @@ class _SettingsScreen extends StatelessWidget {
           ),
           SectionHeader(text: 'App management'),
           NavigationButton(
-            onTap: ctrl.goToChooseSubscription,
             child: Row(
               children: [
                 Icon(DevOpsIcons.crown),
                 const SizedBox(width: 20),
-                Text('Choose plan', style: context.textTheme.bodyLarge),
-                const Spacer(),
-                Icon(Icons.arrow_forward_ios),
+                Text('All premium features unlocked', style: context.textTheme.bodyLarge),
               ],
             ),
           ),
