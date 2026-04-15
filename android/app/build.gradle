@@ -39,6 +39,10 @@ if (project.hasProperty('dart-defines')) {
             }
 }
 
+def msalDebugPath = dartEnvironmentVariables.get('MSAL_DEBUG_PATH') ?: 'auth'
+def msalProdPath = dartEnvironmentVariables.get('MSAL_PROD_PATH') ?: 'auth'
+def admobAppId = dartEnvironmentVariables.get('ADMOB_APPID_ANDROID') ?: 'ca-app-pub-3940256099942544~3347511713'
+
 android {
     namespace 'io.purplesoft.azuredevops'
     ndkVersion "28.2.13676358"
@@ -77,21 +81,21 @@ android {
     
     buildTypes {
         debug {
-           manifestPlaceholders.msalDebugPath = dartEnvironmentVariables.MSAL_DEBUG_PATH + "="
-           manifestPlaceholders.msalProdPath = dartEnvironmentVariables.MSAL_PROD_PATH + "="
-           manifestPlaceholders.admobAppId = dartEnvironmentVariables.ADMOB_APPID_ANDROID
+           manifestPlaceholders.msalDebugPath = msalDebugPath + "="
+           manifestPlaceholders.msalProdPath = msalProdPath + "="
+           manifestPlaceholders.admobAppId = admobAppId
         }
         
         profile {
-           manifestPlaceholders.msalDebugPath = dartEnvironmentVariables.MSAL_DEBUG_PATH + "="
-           manifestPlaceholders.msalProdPath = dartEnvironmentVariables.MSAL_PROD_PATH + "="
-           manifestPlaceholders.admobAppId = dartEnvironmentVariables.ADMOB_APPID_ANDROID
+           manifestPlaceholders.msalDebugPath = msalDebugPath + "="
+           manifestPlaceholders.msalProdPath = msalProdPath + "="
+           manifestPlaceholders.admobAppId = admobAppId
         }
 
         release {
-           signingConfig signingConfigs.release
-           manifestPlaceholders.msalProdPath = dartEnvironmentVariables.MSAL_PROD_PATH + "="
-           manifestPlaceholders.admobAppId = dartEnvironmentVariables.ADMOB_APPID_ANDROID
+           signingConfig keystorePropertiesFile.exists() ? signingConfigs.release : signingConfigs.debug
+           manifestPlaceholders.msalProdPath = msalProdPath + "="
+           manifestPlaceholders.admobAppId = admobAppId
            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
